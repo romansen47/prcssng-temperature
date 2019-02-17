@@ -1,6 +1,6 @@
 package temperature;
 
-import processingTemplate.Gui;
+import processing.template.Gui;
 
 public class Temperature extends Gui{
 	 
