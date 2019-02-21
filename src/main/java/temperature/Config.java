@@ -3,8 +3,8 @@ package temperature;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-public class Config {
-
+final public class Config {
+	
 	static int framerate = 60;
 	static int AmountOfBalls = 400;
 	static int LevelOfCorrectness = 0; // the higher the slower

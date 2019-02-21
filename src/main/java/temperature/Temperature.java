@@ -61,7 +61,7 @@ public class Temperature extends Gui {
 				Balls[j].setColor(Functions.Color(Functions.mathOperator.MagnitudeOfVector(Balls[j].getVelocity()),
 						(Balls[j].getMass()) / MaxMass));
 			}
-			Balls = Functions.Collision(Balls, Config.LevelOfCorrectness);
+			Balls = Functions.collision(Balls, Config.LevelOfCorrectness);
 		}
 
 		// Check, if restart condition is satisfied

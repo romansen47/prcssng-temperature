@@ -5,11 +5,11 @@ import java.util.Random;
 import math.IMathOp;
 import math.MathOp;
 
-public class Functions {
+final public class Functions {
 
-	final static public IMathOp mathOperator = new MathOp();
+	final static public IMathOp mathOperator = MathOp.getInstance(Config.SquareRootCorrectness);
 
-	static public Ball[] Collision(Ball[] Balls, int LevelOfCorrectness) {
+	static public Ball[] collision(Ball[] Balls, int LevelOfCorrectness) {
 		if (Balls.length < 2) {
 			return Balls;
 		}
@@ -26,7 +26,7 @@ public class Functions {
 				TmpBalls1[i] = Interaction[0];
 				tmp1 = Interaction[1];
 			}
-			TmpBalls1 = Collision(TmpBalls1, LevelOfCorrectness - 1);
+			TmpBalls1 = collision(TmpBalls1, LevelOfCorrectness - 1);
 			if (LevelOfCorrectness > 0) {
 				Ball tmp2 = Balls[0];
 				Ball[] TmpBalls2 = new Ball[Balls.length - 1];
@@ -38,7 +38,7 @@ public class Functions {
 					TmpBalls2[i] = Interaction[0];
 					tmp2 = Interaction[1];
 				}
-				TmpBalls2 = Collision(TmpBalls2, LevelOfCorrectness - 1);
+				TmpBalls2 = collision(TmpBalls2, LevelOfCorrectness - 1);
 
 				Balls[0].setPosition(mathOperator.ScalarMultiplication(0.5,
 						mathOperator.AdditionOfVectors(TmpBalls1[0].getPosition(), tmp2.getPosition())));

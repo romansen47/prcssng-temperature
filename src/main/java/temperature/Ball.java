@@ -1,6 +1,6 @@
 package temperature;
 
-public class Ball {
+public class Ball implements IBall{
 
 	private double[] Position = new double[2];
 	private double[] Velocity = new double[2];
@@ -19,79 +19,52 @@ public class Ball {
 		Mass = Math.pow(Radius, 1);
 	}
 
-	public Ball Prediction() {
-		double[] NewVelocity = new double[2];
-		NewVelocity[0] = Velocity[0] - Config.getAirDrag() * Functions.mathOperator.SignumFunction(Velocity[0]);
-		NewVelocity[1] = Velocity[1] - Config.getAirDrag() * Functions.mathOperator.SignumFunction(Velocity[1])
-				+ Config.getGravitationalConstant();
-		return new Ball(Functions.mathOperator.AdditionOfVectors(Position, Velocity), NewVelocity, Radius, Color);
-	}
-
-	public void move() {
-		Velocity[0] = Velocity[0] - Config.getAirDrag() * Functions.mathOperator.SignumFunction(Velocity[0]);
-		if (getPosition()[0] > Config.getRightWall() - getRadius()) {
-			Velocity[0] = -Config.getLossOfEnergyAtTheWall() * Velocity[0];
-			getPosition()[0] = Config.getRightWall() - getRadius();
-		} else {
-			if (getPosition()[0] < Config.getLeftWall() + getRadius()) {
-				Velocity[0] = -Config.getLossOfEnergyAtTheWall() * Velocity[0];
-				getPosition()[0] = Config.getLeftWall() + getRadius();
-			}
-		}
-		if (getPosition()[1] + Velocity[1] >= Config.getBottom() - getRadius()) {
-			getPosition()[1] = Config.getBottom() - getRadius();// 0.5*(Position[1]+Bottom-Radius);
-			if (Functions.mathOperator.Abs(Velocity[1]) < Config.getMinVerVel())
-				Velocity[1] = 0;
-			else {
-				if (Velocity[1] >= 0)
-					Velocity[1] = -Config.getLossOfEnergyAtTheWallByDrag() * Velocity[1];
-				else
-					Velocity[1] = Config.getLossOfEnergyAtTheWallByDrag() * Velocity[1]
-							- Config.getAirDrag() * Functions.mathOperator.SignumFunction(Velocity[1])
-							+ getMass() * Config.getGravitationalConstant();
-			}
-		} else
-			Velocity[1] = Velocity[1] - Config.getAirDrag() * Functions.mathOperator.SignumFunction(Velocity[1])
-					+ Config.getGravitationalConstant();
-		setPosition(Functions.mathOperator.AdditionOfVectors(getPosition(), Velocity));
-	}
-
+	@Override
 	public int[] getColor() {
 		return Color;
 	}
-
+	
+	@Override
 	public void setColor(int[] color) {
 		Color = color;
 	}
 
+	@Override
 	public double[] getPosition() {
 		return Position;
 	}
 
+	@Override
 	public void setPosition(double[] position) {
 		Position = position;
 	}
 
+	@Override
 	public double[] getVelocity() {
 		return this.Velocity;
 	}
 
+	@Override
 	public void setVelocity(double[] vel) {
 		this.Velocity = vel;
 	}
 
+	@Override
 	public int getRadius() {
 		return Radius;
 	}
 
+	@Override
 	public void setRadius(int radius) {
 		Radius = radius;
 	}
 
+	@Override
 	public double getMass() {
 		return Mass;
 	}
 
+	@Override
 	public void setMass(double mass) {
 		Mass = mass;
 	}
