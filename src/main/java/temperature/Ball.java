@@ -1,6 +1,6 @@
 package temperature;
 
-public class Ball implements IBall{
+public class Ball implements IBall {
 
 	private double[] Position = new double[2];
 	private double[] Velocity = new double[2];
@@ -23,7 +23,7 @@ public class Ball implements IBall{
 	public int[] getColor() {
 		return Color;
 	}
-	
+
 	@Override
 	public void setColor(int[] color) {
 		Color = color;
