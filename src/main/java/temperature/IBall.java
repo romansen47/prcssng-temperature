@@ -2,67 +2,69 @@ package temperature;
 
 public interface IBall {
 
-	default public Ball Prediction() {
-		double[] NewVelocity = new double[2];
-		NewVelocity[0] = getVelocity()[0]
-				- Config.getAirDrag() * Functions.mathOperator.SignumFunction(getVelocity()[0]);
-		NewVelocity[1] = getVelocity()[1]
-				- Config.getAirDrag() * Functions.mathOperator.SignumFunction(getVelocity()[1])
-				+ Config.getGravitationalConstant();
-		return new Ball(Functions.mathOperator.AdditionOfVectors(getPosition(), getVelocity()), NewVelocity,
-				getRadius(), getColor());
-	}
-
-	default void move() {
-
-		getVelocity()[0] = getVelocity()[0]
-				- Config.getAirDrag() * Functions.mathOperator.SignumFunction(getVelocity()[0]);
-		if (getPosition()[0] > Config.getRightWall() - (float) getRadius()) {
-			getVelocity()[0] = -Config.getLossOfEnergyAtTheWall() * getVelocity()[0];
-			getPosition()[0] = Config.getRightWall() - (float) getRadius();
-		} else {
-			if (getPosition()[0] < Config.getLeftWall() + (float) getRadius()) {
-				getVelocity()[0] = -Config.getLossOfEnergyAtTheWall() * getVelocity()[0];
-				getPosition()[0] = Config.getLeftWall() + (float) getRadius();
-			}
-		}
-		if (getPosition()[1] + getVelocity()[1] >= Config.getBottom() - getRadius()) {
-			getPosition()[1] = Config.getBottom() - getRadius();// 0.5*(Position[1]+Bottom-Radius);
-			if (Functions.mathOperator.Abs(getVelocity()[1]) < Config.getMinVerVel())
-				getVelocity()[1] = 0;
-			else {
-				if (getVelocity()[1] >= 0)
-					getVelocity()[1] = -Config.getLossOfEnergyAtTheWallByDrag() * getVelocity()[1];
-				else
-					getVelocity()[1] = Config.getLossOfEnergyAtTheWallByDrag() * getVelocity()[1]
-							- Config.getAirDrag() * Functions.mathOperator.SignumFunction(getVelocity()[1])
-							+ getMass() * Config.getGravitationalConstant();
-			}
-		} else
-			getVelocity()[1] = getVelocity()[1]
-					- Config.getAirDrag() * Functions.mathOperator.SignumFunction(getVelocity()[1])
-					+ Config.getGravitationalConstant();
-		setPosition(Functions.mathOperator.AdditionOfVectors(getPosition(), getVelocity()));
-	};
-
 	int[] getColor();
-
-	void setColor(int[] color);
-
-	double[] getPosition();
-
-	void setPosition(double[] position);
-
-	double[] getVelocity();
-
-	void setVelocity(double[] vel);
-
-	int getRadius();
-
-	void setRadius(int radius);
 
 	double getMass();
 
+	double[] getPosition();
+
+	int getRadius();
+
+	double[] getVelocity();
+
+	default void move() {
+
+		this.getVelocity()[0] = this.getVelocity()[0]
+				- Config.getAirDrag() * Functions.mathOperator.SignumFunction(this.getVelocity()[0]);
+		if (this.getPosition()[0] > Config.getRightWall() - (float) this.getRadius()) {
+			this.getVelocity()[0] = -Config.getLossOfEnergyAtTheWall() * this.getVelocity()[0];
+			this.getPosition()[0] = Config.getRightWall() - (float) this.getRadius();
+		} else {
+			if (this.getPosition()[0] < Config.getLeftWall() + (float) this.getRadius()) {
+				this.getVelocity()[0] = -Config.getLossOfEnergyAtTheWall() * this.getVelocity()[0];
+				this.getPosition()[0] = Config.getLeftWall() + (float) this.getRadius();
+			}
+		}
+		if (this.getPosition()[1] + this.getVelocity()[1] >= Config.getBottom() - this.getRadius()) {
+			this.getPosition()[1] = Config.getBottom() - this.getRadius();// 0.5*(Position[1]+Bottom-Radius);
+			if (Functions.mathOperator.Abs(this.getVelocity()[1]) < Config.getMinVerVel()) {
+				this.getVelocity()[1] = 0;
+			} else {
+				if (this.getVelocity()[1] >= 0) {
+					this.getVelocity()[1] = -Config.getLossOfEnergyAtTheWallByDrag() * this.getVelocity()[1];
+				} else {
+					this.getVelocity()[1] = Config.getLossOfEnergyAtTheWallByDrag() * this.getVelocity()[1]
+							- Config.getAirDrag() * Functions.mathOperator.SignumFunction(this.getVelocity()[1])
+							+ this.getMass() * Config.getGravitationalConstant();
+				}
+			}
+		} else {
+			this.getVelocity()[1] = this.getVelocity()[1]
+					- Config.getAirDrag() * Functions.mathOperator.SignumFunction(this.getVelocity()[1])
+					+ Config.getGravitationalConstant();
+		}
+		this.setPosition(Functions.mathOperator.AdditionOfVectors(this.getPosition(), this.getVelocity()));
+	}
+
+	default Ball Prediction() {
+		final double[] NewVelocity = new double[2];
+		NewVelocity[0] = this.getVelocity()[0]
+				- Config.getAirDrag() * Functions.mathOperator.SignumFunction(this.getVelocity()[0]);
+		NewVelocity[1] = this.getVelocity()[1]
+				- Config.getAirDrag() * Functions.mathOperator.SignumFunction(this.getVelocity()[1])
+				+ Config.getGravitationalConstant();
+		return new Ball(Functions.mathOperator.AdditionOfVectors(this.getPosition(), this.getVelocity()), NewVelocity,
+				this.getRadius(), this.getColor());
+	}
+
+	void setColor(int[] color);
+
 	void setMass(double mass);
+
+	void setPosition(double[] position);
+
+	void setRadius(int radius);
+
+	void setVelocity(double[] vel);
 
 }

@@ -1,5 +1,6 @@
 package temperature;
 
+import processing.core.PConstants;
 import processing.template.Gui;
 
 public class Temperature extends Gui {
@@ -12,94 +13,96 @@ public class Temperature extends Gui {
 	Ball[] Balls;
 
 	@Override
-	public void settings() {
-		fullScreen(P3D);
-	}
-
-	@Override
-	public void setup() {
-		frameRate(Config.framerate);
-	}
-
-	@Override
 	public void draw() {
 
 		// Setting background to black
-		background(0);
+		this.background(0);
 
 		// If restart condition satisfied create new set of balls
 		if (Config.restart == true) {
 			Config.restart = false;
-			Ball[] BallsTmp = Functions.createNewBalls(Config.AmountOfBalls);
-			Balls = new Ball[BallsTmp.length];
-			for (int j = 0; j < Balls.length - 1; j++) {
-				Balls[j] = BallsTmp[j];
+			final Ball[] BallsTmp = Functions.createNewBalls(Config.AmountOfBalls);
+			this.Balls = new Ball[BallsTmp.length];
+			for (int j = 0; j < this.Balls.length - 1; j++) {
+				this.Balls[j] = BallsTmp[j];
 			}
-			double[] Pos = new double[2];
+			final double[] Pos = new double[2];
 			Pos[1] = -100;
 			Pos[0] = Config.getRightWall() / 2;
-			double[] Vel = new double[2];
+			final double[] Vel = new double[2];
 			Vel[0] = 0;
 			Vel[1] = 0;
-			int[] Col = new int[3];
+			final int[] Col = new int[3];
 			Col[0] = 255;
 			Col[1] = 0;
 			Col[2] = 0;
-			Balls[Balls.length - 1] = new Ball(Pos, Vel, Config.MaxRad * 1, Col);
+			this.Balls[this.Balls.length - 1] = new Ball(Pos, Vel, Config.MaxRad * 1, Col);
 		}
 
 		double MaxMass = 0;
-		for (int j = 0; j < Balls.length; j++) {
-			if (MaxMass < Balls[j].getMass()) {
-				MaxMass = Balls[j].getMass();
+		for (int j = 0; j < this.Balls.length; j++) {
+			if (MaxMass < this.Balls[j].getMass()) {
+				MaxMass = this.Balls[j].getMass();
 			}
 		}
 
 		for (int i = 0; i < Config.speed; i++) {
-			Functions.MoveBalls(Balls);
-			for (int j = 0; j < Balls.length; j++) {
-				Balls[j].setColor(Functions.Color(Functions.mathOperator.MagnitudeOfVector(Balls[j].getVelocity()),
-						(Balls[j].getMass()) / MaxMass));
+			Functions.MoveBalls(this.Balls);
+			for (int j = 0; j < this.Balls.length; j++) {
+				this.Balls[j]
+						.setColor(Functions.Color(Functions.mathOperator.MagnitudeOfVector(this.Balls[j].getVelocity()),
+								(this.Balls[j].getMass()) / MaxMass));
 			}
-			Balls = Functions.collision(Balls, Config.LevelOfCorrectness);
+			this.Balls = Functions.collision(this.Balls, Config.LevelOfCorrectness);
 		}
 
 		// Check, if restart condition is satisfied
 		int VelOfAll = 0;
-		for (int i = 0; i < Balls.length; i++) {
-			VelOfAll += Functions.mathOperator.MagnitudeOfVector(Balls[i].getVelocity());
+		for (int i = 0; i < this.Balls.length; i++) {
+			VelOfAll += Functions.mathOperator.MagnitudeOfVector(this.Balls[i].getVelocity());
 		}
 		if (VelOfAll < Config.RestartCondition) {
 			Config.restart = true;
 		}
 
 		// Draw the balls
-		DrawBalls(Balls);
+		this.DrawBalls(this.Balls);
 
 		// Manual restart if 'r' is pressed - exit() if another key or mouse is pressed
-		if ((mousePressed && (mouseButton == LEFT)) || (keyPressed && key == 'r')) {
+		if ((this.mousePressed && (this.mouseButton == PConstants.LEFT)) || (this.keyPressed && this.key == 'r')) {
 			try {
 				Thread.sleep(400);
-			} catch (InterruptedException e) {
+			} catch (final InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			Config.restart = true;
 		}
-		if ((mousePressed && (mouseButton == RIGHT)) || (keyPressed && (key == 'q')))
-			exit();
+		if ((this.mousePressed && (this.mouseButton == PConstants.RIGHT)) || (this.keyPressed && (this.key == 'q'))) {
+			this.exit();
+		}
 	}
 
 	// These drawing functions use fill() and will be exported to Functions.java
 	public void draw(Ball A) {
-		fill(A.getColor()[0], A.getColor()[1], A.getColor()[2]);
-		ellipse((float) A.getPosition()[0], (float) A.getPosition()[1], 2 * A.getRadius(), 2 * A.getRadius());
+		this.fill(A.getColor()[0], A.getColor()[1], A.getColor()[2]);
+		this.ellipse((float) A.getPosition()[0], (float) A.getPosition()[1], 2 * A.getRadius(), 2 * A.getRadius());
 	}
 
 	public void DrawBalls(Ball[] Bs) {
 		for (int i = 0; i < Bs.length; i++) {
-			draw(Bs[i]);
+			this.draw(Bs[i]);
 		}
+	}
+
+	@Override
+	public void settings() {
+		this.fullScreen(PConstants.P3D);
+	}
+
+	@Override
+	public void setup() {
+		this.frameRate(Config.framerate);
 	}
 
 }

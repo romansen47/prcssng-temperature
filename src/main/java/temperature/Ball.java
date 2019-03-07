@@ -12,31 +12,31 @@ public class Ball implements IBall {
 	}
 
 	public Ball(double[] position, double[] velocity, int radius, int[] col) {
-		Position = position;
-		Velocity = velocity;
-		Radius = radius;
-		Color = col;
-		Mass = Math.pow(Radius, 1);
+		this.Position = position;
+		this.Velocity = velocity;
+		this.Radius = radius;
+		this.Color = col;
+		this.Mass = Math.pow(this.Radius, 1);
 	}
 
 	@Override
 	public int[] getColor() {
-		return Color;
+		return this.Color;
 	}
 
 	@Override
-	public void setColor(int[] color) {
-		Color = color;
+	public double getMass() {
+		return this.Mass;
 	}
 
 	@Override
 	public double[] getPosition() {
-		return Position;
+		return this.Position;
 	}
 
 	@Override
-	public void setPosition(double[] position) {
-		Position = position;
+	public int getRadius() {
+		return this.Radius;
 	}
 
 	@Override
@@ -45,28 +45,28 @@ public class Ball implements IBall {
 	}
 
 	@Override
-	public void setVelocity(double[] vel) {
-		this.Velocity = vel;
-	}
-
-	@Override
-	public int getRadius() {
-		return Radius;
-	}
-
-	@Override
-	public void setRadius(int radius) {
-		Radius = radius;
-	}
-
-	@Override
-	public double getMass() {
-		return Mass;
+	public void setColor(int[] color) {
+		this.Color = color;
 	}
 
 	@Override
 	public void setMass(double mass) {
-		Mass = mass;
+		this.Mass = mass;
+	}
+
+	@Override
+	public void setPosition(double[] position) {
+		this.Position = position;
+	}
+
+	@Override
+	public void setRadius(int radius) {
+		this.Radius = radius;
+	}
+
+	@Override
+	public void setVelocity(double[] vel) {
+		this.Velocity = vel;
 	}
 
 }
