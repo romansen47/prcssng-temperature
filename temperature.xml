@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="create_run_jar" name="Create Runnable Jar for Project temperature">
-    <property name="dir.buildfile" value="."/>
-    <property name="dir.jarfile" value="${dir.buildfile}"/>
-    <target name="create_run_jar">
-        <jar destfile="${dir.jarfile}/target/temperature_run.jar" filesetmanifest="mergewithoutmain">
-            <manifest>
-                <attribute name="Main-Class" value="temperature.Temperature"/>
-                <attribute name="Class-Path" value="."/>
-            </manifest>
-	    <fileset dir="${dir.jarfile}/target/classes"/>
-            <zipfileset excludes="META-INF/*.SF" src="../prcssng-template/target/template-1.0.0-snapshot.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="../math/target/math-1.0.0-snapshot.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="target/temperature-1.0.0-snapshot-jar-with-dependencies.jar"/>
-        </jar>
-    </target>
+<project default="create_run_jar"
+	name="Create Runnable Jar for Project temperature">
+	<property name="dir.buildfile" value="." />
+	<property name="dir.jarfile" value="${dir.buildfile}" />
+	<target name="create_run_jar">
+		<jar destfile="${dir.jarfile}/target/temperature_run.jar"
+			filesetmanifest="mergewithoutmain">
+			<manifest>
+				<attribute name="Main-Class"
+					value="temperature.Temperature" />
+				<attribute name="Class-Path" value="." />
+			</manifest>
+			<fileset dir="${dir.jarfile}/target/classes" />
+			<zipfileset excludes="META-INF/*.SF"
+				src="../prcssng-template/target/template-1.0.0-snapshot.jar" />
+			<zipfileset excludes="META-INF/*.SF"
+				src="../math/target/math-1.0.0-snapshot.jar" />
+			<zipfileset excludes="META-INF/*.SF"
+				src="target/temperature-1.0.0-snapshot-jar-with-dependencies.jar" />
+		</jar>
+	</target>
 </project>
