@@ -3,92 +3,329 @@ package temperature;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-final public class Config {
+public final class Config implements IConfig {
 
-	static int framerate = 60;
-	static int AmountOfBalls = 400;
-	static int LevelOfCorrectness = 0; // the higher the slower
-	static int speed = 1; // the faster the less smooth
-	private static int MinVerVel = 1;
-	static double RestartCondition = 0.01; // 0.0000001*AmountOfBalls;
-	private static double AirDrag = 0.01;
-	private static double LossOfEnergyAtTheWall = 0.99;
-	static double LossOfEnergyAtTheBottom = 0.99;
-	private static double LossOfEnergyAtTheWallByDrag = 0.99;
-	private static double GravitationalConstant = 0.08;
-	static boolean restart = true;
-	static double SquareRootCorrectness = 0.00000001;
-	static double ratio = 2;
-	private static int LeftWall;
-	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	private static int RightWall = (int) Config.screenSize.getWidth();
-	private static int Bottom = (int) (Config.screenSize.getHeight());
-	static int MinRad = (int) (1.5 * (Config.getRightWall()) / (Config.AmountOfBalls));
-	static int MaxRad = (int) (Config.ratio * Config.MinRad);
-	static int Energy = 70;
+	private int framerate = 60;
+	private int AmountOfBalls = 400;
+	private int LevelOfCorrectness = 0; // the higher the slower
+	private int speed = 1; // the faster the less smooth
+	private int MinVerVel = 1;
+	private double RestartCondition = 0.01; // 0.0000001*AmountOfBalls;
+	private double AirDrag = 0.01;
+	private double LossOfEnergyAtTheWall = 0.99;
+	private double LossOfEnergyAtTheBottom = 0.99;
+	private double LossOfEnergyAtTheWallByDrag = 0.99;
+	private double GravitationalConstant = 0.08;
+	private boolean restart = true;
+	private double SquareRootCorrectness = 0.00000001;
+	private double ratio = 2;
+	private int LeftWall;
+	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private int RightWall = (int) screenSize.getWidth();
+	private int Bottom = (int) (screenSize.getHeight());
+	private int MinRad = (int) (1.5 * (getRightWall() / AmountOfBalls));
+	private int MaxRad = (int) (ratio * MinRad);
+	private int Energy = 70;
 
-	public static double getAirDrag() {
-		return Config.AirDrag;
+	private static IConfig instance;
+
+	private Config() {
+		instance = this;
 	}
 
-	public static int getBottom() {
-		return Config.Bottom;
+	public static IConfig getInstance() {
+		if (instance == null) {
+			return new Config();
+		}
+		return instance;
 	}
 
-	public static double getGravitationalConstant() {
-		return Config.GravitationalConstant;
+	@Override
+	public double getAirDrag() {
+		return AirDrag;
 	}
 
-	public static int getLeftWall() {
-		return Config.LeftWall;
+	@Override
+	public int getBottom() {
+		return Bottom;
 	}
 
-	public static double getLossOfEnergyAtTheWall() {
-		return Config.LossOfEnergyAtTheWall;
+	@Override
+	public double getGravitationalConstant() {
+		return GravitationalConstant;
 	}
 
-	public static double getLossOfEnergyAtTheWallByDrag() {
-		return Config.LossOfEnergyAtTheWallByDrag;
+	@Override
+	public int getLeftWall() {
+		return LeftWall;
 	}
 
-	public static int getMinVerVel() {
-		return Config.MinVerVel;
+	@Override
+	public double getLossOfEnergyAtTheWall() {
+		return LossOfEnergyAtTheWall;
 	}
 
-	public static int getRightWall() {
-		return Config.RightWall;
+	@Override
+	public double getLossOfEnergyAtTheWallByDrag() {
+		return LossOfEnergyAtTheWallByDrag;
 	}
 
-	public static void setAirDrag(double airDrag) {
-		Config.AirDrag = airDrag;
+	@Override
+	public int getMinVerVel() {
+		return MinVerVel;
 	}
 
-	public static void setBottom(int bottom) {
-		Config.Bottom = bottom;
+	@Override
+	public int getRightWall() {
+		return RightWall;
 	}
 
-	public static void setGravitationalConstant(double gravitationalConstant) {
-		Config.GravitationalConstant = gravitationalConstant;
+	@Override
+	public void setAirDrag(double airDrag) {
+		AirDrag = airDrag;
 	}
 
-	public static void setLeftWall(int leftWall) {
-		Config.LeftWall = leftWall;
+	@Override
+	public void setBottom(int bottom) {
+		Bottom = bottom;
 	}
 
-	public static void setLossOfEnergyAtTheWall(double lossOfEnergyAtTheWall) {
-		Config.LossOfEnergyAtTheWall = lossOfEnergyAtTheWall;
+	@Override
+	public void setGravitationalConstant(double gravitationalConstant) {
+		GravitationalConstant = gravitationalConstant;
 	}
 
-	public static void setLossOfEnergyAtTheWallByDrag(double lossOfEnergyAtTheWallByDrag) {
-		Config.LossOfEnergyAtTheWallByDrag = lossOfEnergyAtTheWallByDrag;
+	@Override
+	public void setLeftWall(int leftWall) {
+		LeftWall = leftWall;
 	}
 
-	public static void setMinVerVel(int minVerVel) {
-		Config.MinVerVel = minVerVel;
+	@Override
+	public void setLossOfEnergyAtTheWall(double lossOfEnergyAtTheWall) {
+		LossOfEnergyAtTheWall = lossOfEnergyAtTheWall;
 	}
 
-	public static void setRightWall(int rightWall) {
-		Config.RightWall = rightWall;
+	@Override
+	public void setLossOfEnergyAtTheWallByDrag(double lossOfEnergyAtTheWallByDrag) {
+		LossOfEnergyAtTheWallByDrag = lossOfEnergyAtTheWallByDrag;
+	}
+
+	@Override
+	public void setMinVerVel(int minVerVel) {
+		MinVerVel = minVerVel;
+	}
+
+	@Override
+	public void setRightWall(int rightWall) {
+		RightWall = rightWall;
+	}
+
+	/**
+	 * @return the framerate
+	 */
+	@Override
+	public int getFramerate() {
+		return framerate;
+	}
+
+	/**
+	 * @param framerate the framerate to set
+	 */
+	@Override
+	public void setFramerate(int framerate) {
+		this.framerate = framerate;
+	}
+
+	/**
+	 * @return the amountOfBalls
+	 */
+	@Override
+	public int getAmountOfBalls() {
+		return AmountOfBalls;
+	}
+
+	/**
+	 * @param amountOfBalls the amountOfBalls to set
+	 */
+	@Override
+	public void setAmountOfBalls(int amountOfBalls) {
+		AmountOfBalls = amountOfBalls;
+	}
+
+	/**
+	 * @return the levelOfCorrectness
+	 */
+	@Override
+	public int getLevelOfCorrectness() {
+		return LevelOfCorrectness;
+	}
+
+	/**
+	 * @param levelOfCorrectness the levelOfCorrectness to set
+	 */
+	@Override
+	public void setLevelOfCorrectness(int levelOfCorrectness) {
+		LevelOfCorrectness = levelOfCorrectness;
+	}
+
+	/**
+	 * @return the speed
+	 */
+	@Override
+	public int getSpeed() {
+		return speed;
+	}
+
+	/**
+	 * @param speed the speed to set
+	 */
+	@Override
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
+	/**
+	 * @return the restartCondition
+	 */
+	@Override
+	public double getRestartCondition() {
+		return RestartCondition;
+	}
+
+	/**
+	 * @param restartCondition the restartCondition to set
+	 */
+	@Override
+	public void setRestartCondition(double restartCondition) {
+		RestartCondition = restartCondition;
+	}
+
+	/**
+	 * @return the lossOfEnergyAtTheBottom
+	 */
+	@Override
+	public double getLossOfEnergyAtTheBottom() {
+		return LossOfEnergyAtTheBottom;
+	}
+
+	/**
+	 * @param lossOfEnergyAtTheBottom the lossOfEnergyAtTheBottom to set
+	 */
+	@Override
+	public void setLossOfEnergyAtTheBottom(double lossOfEnergyAtTheBottom) {
+		LossOfEnergyAtTheBottom = lossOfEnergyAtTheBottom;
+	}
+
+	/**
+	 * @return the restart
+	 */
+	@Override
+	public boolean isRestart() {
+		return restart;
+	}
+
+	/**
+	 * @param restart the restart to set
+	 */
+	@Override
+	public void setRestart(boolean restart) {
+		this.restart = restart;
+	}
+
+	/**
+	 * @return the squareRootCorrectness
+	 */
+	@Override
+	public double getSquareRootCorrectness() {
+		return SquareRootCorrectness;
+	}
+
+	/**
+	 * @param squareRootCorrectness the squareRootCorrectness to set
+	 */
+	@Override
+	public void setSquareRootCorrectness(double squareRootCorrectness) {
+		SquareRootCorrectness = squareRootCorrectness;
+	}
+
+	/**
+	 * @return the ratio
+	 */
+	@Override
+	public double getRatio() {
+		return ratio;
+	}
+
+	/**
+	 * @param ratio the ratio to set
+	 */
+	@Override
+	public void setRatio(double ratio) {
+		this.ratio = ratio;
+	}
+
+	/**
+	 * @return the screenSize
+	 */
+	@Override
+	public Dimension getScreenSize() {
+		return screenSize;
+	}
+
+	/**
+	 * @param screenSize the screenSize to set
+	 */
+	@Override
+	public void setScreenSize(Dimension screenSize) {
+		this.screenSize = screenSize;
+	}
+
+	/**
+	 * @return the minRad
+	 */
+	@Override
+	public int getMinRad() {
+		return MinRad;
+	}
+
+	/**
+	 * @param minRad the minRad to set
+	 */
+	@Override
+	public void setMinRad(int minRad) {
+		MinRad = minRad;
+	}
+
+	/**
+	 * @return the maxRad
+	 */
+	@Override
+	public int getMaxRad() {
+		return MaxRad;
+	}
+
+	/**
+	 * @param maxRad the maxRad to set
+	 */
+	@Override
+	public void setMaxRad(int maxRad) {
+		MaxRad = maxRad;
+	}
+
+	/**
+	 * @return the energy
+	 */
+	@Override
+	public int getEnergy() {
+		return Energy;
+	}
+
+	/**
+	 * @param energy the energy to set
+	 */
+	@Override
+	public void setEnergy(int energy) {
+		Energy = energy;
 	}
 
 }
