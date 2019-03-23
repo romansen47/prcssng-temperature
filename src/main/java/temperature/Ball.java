@@ -12,61 +12,61 @@ public class Ball implements IBall {
 	}
 
 	public Ball(double[] position, double[] velocity, int radius, int[] col) {
-		this.Position = position;
-		this.Velocity = velocity;
-		this.Radius = radius;
-		this.Color = col;
-		this.Mass = Math.pow(this.Radius, 1);
+		Position = position;
+		Velocity = velocity;
+		Radius = radius;
+		Color = col;
+		Mass = Math.pow(Radius, 1);
 	}
 
 	@Override
 	public int[] getColor() {
-		return this.Color;
+		return Color;
 	}
 
 	@Override
 	public double getMass() {
-		return this.Mass;
+		return Mass;
 	}
 
 	@Override
 	public double[] getPosition() {
-		return this.Position;
+		return Position;
 	}
 
 	@Override
 	public int getRadius() {
-		return this.Radius;
+		return Radius;
 	}
 
 	@Override
 	public double[] getVelocity() {
-		return this.Velocity;
+		return Velocity;
 	}
 
 	@Override
 	public void setColor(int[] color) {
-		this.Color = color;
+		Color = color;
 	}
 
 	@Override
 	public void setMass(double mass) {
-		this.Mass = mass;
+		Mass = mass;
 	}
 
 	@Override
 	public void setPosition(double[] position) {
-		this.Position = position;
+		Position = position;
 	}
 
 	@Override
 	public void setRadius(int radius) {
-		this.Radius = radius;
+		Radius = radius;
 	}
 
 	@Override
 	public void setVelocity(double[] vel) {
-		this.Velocity = vel;
+		Velocity = vel;
 	}
 
 }

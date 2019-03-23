@@ -24,9 +24,9 @@ public class Temperature extends Gui {
 		if (Config.getInstance().isRestart()) {
 			Config.getInstance().setRestart(false);
 			final Ball[] BallsTmp = getFunctions().createNewBalls(Config.getInstance().getAmountOfBalls());
-			this.Balls = new Ball[BallsTmp.length];
-			for (int j = 0; j < this.Balls.length - 1; j++) {
-				this.Balls[j] = BallsTmp[j];
+			Balls = new Ball[BallsTmp.length];
+			for (int j = 0; j < Balls.length - 1; j++) {
+				Balls[j] = BallsTmp[j];
 			}
 			final double[] Pos = new double[2];
 			Pos[1] = -100;
@@ -38,40 +38,40 @@ public class Temperature extends Gui {
 			Col[0] = 255;
 			Col[1] = 0;
 			Col[2] = 0;
-			this.Balls[this.Balls.length - 1] = new Ball(Pos, Vel, Config.getInstance().getMaxRad() * 1, Col);
+			Balls[Balls.length - 1] = new Ball(Pos, Vel, Config.getInstance().getMaxRad() * 1, Col);
 		}
 
 		double MaxMass = 0;
-		for (int j = 0; j < this.Balls.length; j++) {
-			if (MaxMass < this.Balls[j].getMass()) {
-				MaxMass = this.Balls[j].getMass();
+		for (int j = 0; j < Balls.length; j++) {
+			if (MaxMass < Balls[j].getMass()) {
+				MaxMass = Balls[j].getMass();
 			}
 		}
 
 		for (int i = 0; i < Config.getInstance().getSpeed(); i++) {
-			getFunctions().MoveBalls(this.Balls);
-			for (int j = 0; j < this.Balls.length; j++) {
-				this.Balls[j].setColor(getFunctions().Color(
-						getFunctions().getMathOperator().MagnitudeOfVector(this.Balls[j].getVelocity()),
-						(this.Balls[j].getMass()) / MaxMass));
+			getFunctions().MoveBalls(Balls);
+			for (int j = 0; j < Balls.length; j++) {
+				Balls[j].setColor(
+						getFunctions().Color(getFunctions().getMathOperator().MagnitudeOfVector(Balls[j].getVelocity()),
+								(Balls[j].getMass()) / MaxMass));
 			}
-			this.Balls = getFunctions().collision(this.Balls, Config.getInstance().getLevelOfCorrectness());
+			Balls = getFunctions().collision(Balls, Config.getInstance().getLevelOfCorrectness());
 		}
 
 		// Check, if restart condition is satisfied
 		int VelOfAll = 0;
-		for (int i = 0; i < this.Balls.length; i++) {
-			VelOfAll += getFunctions().getMathOperator().MagnitudeOfVector(this.Balls[i].getVelocity());
+		for (int i = 0; i < Balls.length; i++) {
+			VelOfAll += getFunctions().getMathOperator().MagnitudeOfVector(Balls[i].getVelocity());
 		}
 		if (VelOfAll < Config.getInstance().getRestartCondition()) {
 			Config.getInstance().setRestart(true);
 		}
 
 		// Draw the balls
-		this.DrawBalls(this.Balls);
+		DrawBalls(Balls);
 
 		// Manual restart if 'r' is pressed - exit() if another key or mouse is pressed
-		if ((this.mousePressed && (this.mouseButton == PConstants.LEFT)) || (this.keyPressed && this.key == 'r')) {
+		if ((mousePressed && (mouseButton == PConstants.LEFT)) || (keyPressed && key == 'r')) {
 			try {
 				Thread.sleep(400);
 			} catch (final InterruptedException e) {
@@ -80,15 +80,15 @@ public class Temperature extends Gui {
 			}
 			Config.getInstance().setRestart(true);
 		}
-		if ((this.mousePressed && (this.mouseButton == PConstants.RIGHT)) || (this.keyPressed && (this.key == 'q'))) {
-			this.exit();
+		if ((mousePressed && (mouseButton == PConstants.RIGHT)) || (keyPressed && (key == 'q'))) {
+			exit();
 		}
 	}
 
 	// These drawing functions use fill() and will be exported to functions.java
 	public void draw(Ball A) {
 		this.fill(A.getColor()[0], A.getColor()[1], A.getColor()[2]);
-		this.ellipse((float) A.getPosition()[0], (float) A.getPosition()[1], 2 * A.getRadius(), 2 * A.getRadius());
+		ellipse((float) A.getPosition()[0], (float) A.getPosition()[1], 2 * A.getRadius(), 2 * A.getRadius());
 	}
 
 	public void DrawBalls(Ball[] Bs) {
@@ -104,7 +104,7 @@ public class Temperature extends Gui {
 
 	@Override
 	public void setup() {
-		this.frameRate(Config.getInstance().getFramerate());
+		frameRate(Config.getInstance().getFramerate());
 	}
 
 	/**

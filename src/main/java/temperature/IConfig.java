@@ -154,49 +154,49 @@ interface IConfig {
 
 	/**
 	 * setter for bottom
-	 * 
+	 *
 	 * @param bottom bottom
 	 */
 	void setBottom(int bottom);
 
 	/**
 	 * setter for gravitation const
-	 * 
+	 *
 	 * @param gravitationalConstant G*
 	 */
 	void setGravitationalConstant(double gravitationalConstant);
 
 	/**
 	 * setter for leftWall
-	 * 
+	 *
 	 * @param leftWall the value
 	 */
 	void setLeftWall(int leftWall);
 
 	/**
 	 * setter for energy ratio at wall
-	 * 
+	 *
 	 * @param lossOfEnergyAtTheWall the value
 	 */
 	void setLossOfEnergyAtTheWall(double lossOfEnergyAtTheWall);
 
 	/**
 	 * setter for energy ratio at wall by drag
-	 * 
+	 *
 	 * @param lossOfEnergyAtTheWallByDrag the value
 	 */
 	void setLossOfEnergyAtTheWallByDrag(double lossOfEnergyAtTheWallByDrag);
 
 	/**
 	 * setter for minVerVel
-	 * 
+	 *
 	 * @param minVerVel the value
 	 */
 	void setMinVerVel(int minVerVel);
 
 	/**
 	 * setter for rightWall
-	 * 
+	 *
 	 * @param rightWall the value
 	 */
 	void setRightWall(int rightWall);
