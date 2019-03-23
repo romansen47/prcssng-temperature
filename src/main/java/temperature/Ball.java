@@ -2,21 +2,21 @@ package temperature;
 
 public class Ball implements IBall {
 
-	private int[] Color = new int[3];
-	private double Mass = 1;
-	private double[] Position = new double[2];
-	private int Radius = 1;
-	private double[] Velocity = new double[2];
+	private int[]		Color		= new int[3];
+	private double		Mass		= 1;
+	private double[]	Position	= new double[2];
+	private int			Radius		= 1;
+	private double[]	Velocity	= new double[2];
 
 	public Ball() {
 	}
 
 	public Ball(double[] position, double[] velocity, int radius, int[] col) {
-		Position = position;
-		Velocity = velocity;
-		Radius = radius;
-		Color = col;
-		Mass = Math.pow(Radius, 1);
+		Position	= position;
+		Velocity	= velocity;
+		Radius		= radius;
+		Color		= col;
+		Mass		= Math.pow(Radius, 1);
 	}
 
 	@Override

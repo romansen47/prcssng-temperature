@@ -38,7 +38,9 @@ interface IConfig {
 	int getAmountOfBalls();
 
 	/**
-	 * @param amountOfBalls the amountOfBalls to set
+	 * @param amountOfBalls the
+	 *                      amountOfBalls to
+	 *                      set
 	 */
 	void setAmountOfBalls(int amountOfBalls);
 
@@ -48,7 +50,9 @@ interface IConfig {
 	int getLevelOfCorrectness();
 
 	/**
-	 * @param levelOfCorrectness the levelOfCorrectness to set
+	 * @param levelOfCorrectness the
+	 *                           levelOfCorrectness
+	 *                           to set
 	 */
 	void setLevelOfCorrectness(int levelOfCorrectness);
 
@@ -68,7 +72,9 @@ interface IConfig {
 	double getRestartCondition();
 
 	/**
-	 * @param restartCondition the restartCondition to set
+	 * @param restartCondition the
+	 *                         restartCondition
+	 *                         to set
 	 */
 	void setRestartCondition(double restartCondition);
 
@@ -78,7 +84,9 @@ interface IConfig {
 	double getLossOfEnergyAtTheBottom();
 
 	/**
-	 * @param lossOfEnergyAtTheBottom the lossOfEnergyAtTheBottom to set
+	 * @param lossOfEnergyAtTheBottom the
+	 *                                lossOfEnergyAtTheBottom
+	 *                                to set
 	 */
 	void setLossOfEnergyAtTheBottom(double lossOfEnergyAtTheBottom);
 
@@ -98,7 +106,9 @@ interface IConfig {
 	double getSquareRootCorrectness();
 
 	/**
-	 * @param squareRootCorrectness the squareRootCorrectness to set
+	 * @param squareRootCorrectness the
+	 *                              squareRootCorrectness
+	 *                              to set
 	 */
 	void setSquareRootCorrectness(double squareRootCorrectness);
 
@@ -118,7 +128,8 @@ interface IConfig {
 	Dimension getScreenSize();
 
 	/**
-	 * @param screenSize the screenSize to set
+	 * @param screenSize the screenSize to
+	 *                   set
 	 */
 	void setScreenSize(Dimension screenSize);
 
@@ -176,14 +187,17 @@ interface IConfig {
 	/**
 	 * setter for energy ratio at wall
 	 *
-	 * @param lossOfEnergyAtTheWall the value
+	 * @param lossOfEnergyAtTheWall the
+	 *                              value
 	 */
 	void setLossOfEnergyAtTheWall(double lossOfEnergyAtTheWall);
 
 	/**
-	 * setter for energy ratio at wall by drag
+	 * setter for energy ratio at wall by
+	 * drag
 	 *
-	 * @param lossOfEnergyAtTheWallByDrag the value
+	 * @param lossOfEnergyAtTheWallByDrag the
+	 *                                    value
 	 */
 	void setLossOfEnergyAtTheWallByDrag(double lossOfEnergyAtTheWallByDrag);
 

@@ -5,27 +5,30 @@ import java.awt.Toolkit;
 
 public final class Config implements IConfig {
 
-	private int framerate = 60;
-	private int AmountOfBalls = 400;
-	private int LevelOfCorrectness = 0; // the higher the slower
-	private int speed = 1; // the faster the less smooth
-	private int MinVerVel = 1;
-	private double RestartCondition = 0.01; // 0.0000001*AmountOfBalls;
-	private double AirDrag = 0.01;
-	private double LossOfEnergyAtTheWall = 0.99;
-	private double LossOfEnergyAtTheBottom = 0.99;
-	private double LossOfEnergyAtTheWallByDrag = 0.99;
-	private double GravitationalConstant = 0.08;
-	private boolean restart = true;
-	private double SquareRootCorrectness = 0.00000001;
-	private double ratio = 2;
-	private int LeftWall;
-	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	private int RightWall = (int) screenSize.getWidth();
-	private int Bottom = (int) (screenSize.getHeight());
-	private int MinRad = (int) (1.5 * (getRightWall() / AmountOfBalls));
-	private int MaxRad = (int) (ratio * MinRad);
-	private int Energy = 70;
+	private int			framerate					= 60;
+	private int			AmountOfBalls				= 400;
+	private int			LevelOfCorrectness			= 0;												// the higher
+																										// the slower
+	private int			speed						= 1;												// the faster
+																										// the less
+																										// smooth
+	private int			MinVerVel					= 1;
+	private double		RestartCondition			= 0.01;												// 0.0000001*AmountOfBalls;
+	private double		AirDrag						= 0.01;
+	private double		LossOfEnergyAtTheWall		= 0.99;
+	private double		LossOfEnergyAtTheBottom		= 0.99;
+	private double		LossOfEnergyAtTheWallByDrag	= 0.99;
+	private double		GravitationalConstant		= 0.08;
+	private boolean		restart						= true;
+	private double		SquareRootCorrectness		= 0.00000001;
+	private double		ratio						= 2;
+	private int			LeftWall;
+	private Dimension	screenSize					= Toolkit.getDefaultToolkit().getScreenSize();
+	private int			RightWall					= (int) screenSize.getWidth();
+	private int			Bottom						= (int) (screenSize.getHeight());
+	private int			MinRad						= (int) (1.5 * (getRightWall() / AmountOfBalls));
+	private int			MaxRad						= (int) (ratio * MinRad);
+	private int			Energy						= 70;
 
 	private static IConfig instance;
 
@@ -145,7 +148,9 @@ public final class Config implements IConfig {
 	}
 
 	/**
-	 * @param amountOfBalls the amountOfBalls to set
+	 * @param amountOfBalls the
+	 *                      amountOfBalls to
+	 *                      set
 	 */
 	@Override
 	public void setAmountOfBalls(int amountOfBalls) {
@@ -161,7 +166,9 @@ public final class Config implements IConfig {
 	}
 
 	/**
-	 * @param levelOfCorrectness the levelOfCorrectness to set
+	 * @param levelOfCorrectness the
+	 *                           levelOfCorrectness
+	 *                           to set
 	 */
 	@Override
 	public void setLevelOfCorrectness(int levelOfCorrectness) {
@@ -193,7 +200,9 @@ public final class Config implements IConfig {
 	}
 
 	/**
-	 * @param restartCondition the restartCondition to set
+	 * @param restartCondition the
+	 *                         restartCondition
+	 *                         to set
 	 */
 	@Override
 	public void setRestartCondition(double restartCondition) {
@@ -209,7 +218,9 @@ public final class Config implements IConfig {
 	}
 
 	/**
-	 * @param lossOfEnergyAtTheBottom the lossOfEnergyAtTheBottom to set
+	 * @param lossOfEnergyAtTheBottom the
+	 *                                lossOfEnergyAtTheBottom
+	 *                                to set
 	 */
 	@Override
 	public void setLossOfEnergyAtTheBottom(double lossOfEnergyAtTheBottom) {
@@ -241,7 +252,9 @@ public final class Config implements IConfig {
 	}
 
 	/**
-	 * @param squareRootCorrectness the squareRootCorrectness to set
+	 * @param squareRootCorrectness the
+	 *                              squareRootCorrectness
+	 *                              to set
 	 */
 	@Override
 	public void setSquareRootCorrectness(double squareRootCorrectness) {
@@ -273,7 +286,8 @@ public final class Config implements IConfig {
 	}
 
 	/**
-	 * @param screenSize the screenSize to set
+	 * @param screenSize the screenSize to
+	 *                   set
 	 */
 	@Override
 	public void setScreenSize(Dimension screenSize) {

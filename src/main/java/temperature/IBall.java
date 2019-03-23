@@ -42,18 +42,19 @@ public interface IBall {
 	double[] getVelocity();
 
 	/**
-	 * move the ball with given position and velocity vectors
+	 * move the ball with given position and
+	 * velocity vectors
 	 */
 	default void move() {
 		getVelocity()[0] = getVelocity()[0]
 				- Config.getInstance().getAirDrag() * Functions.mathOperator.SignumFunction(getVelocity()[0]);
 		if (getPosition()[0] > Config.getInstance().getRightWall() - (float) getRadius()) {
-			getVelocity()[0] = -Config.getInstance().getLossOfEnergyAtTheWall() * getVelocity()[0];
-			getPosition()[0] = Config.getInstance().getRightWall() - (float) getRadius();
+			getVelocity()[0]	= -Config.getInstance().getLossOfEnergyAtTheWall() * getVelocity()[0];
+			getPosition()[0]	= Config.getInstance().getRightWall() - (float) getRadius();
 		} else {
 			if (getPosition()[0] < Config.getInstance().getLeftWall() + (float) getRadius()) {
-				getVelocity()[0] = -Config.getInstance().getLossOfEnergyAtTheWall() * getVelocity()[0];
-				getPosition()[0] = Config.getInstance().getLeftWall() + (float) getRadius();
+				getVelocity()[0]	= -Config.getInstance().getLossOfEnergyAtTheWall() * getVelocity()[0];
+				getPosition()[0]	= Config.getInstance().getLeftWall() + (float) getRadius();
 			}
 		}
 		if (getPosition()[1] + getVelocity()[1] >= Config.getInstance().getBottom() - getRadius()) {
@@ -80,9 +81,9 @@ public interface IBall {
 
 	default Ball Prediction() {
 		final double[] NewVelocity = new double[2];
-		NewVelocity[0] = getVelocity()[0]
+		NewVelocity[0]	= getVelocity()[0]
 				- Config.getInstance().getAirDrag() * Functions.mathOperator.SignumFunction(getVelocity()[0]);
-		NewVelocity[1] = getVelocity()[1]
+		NewVelocity[1]	= getVelocity()[1]
 				- Config.getInstance().getAirDrag() * Functions.mathOperator.SignumFunction(getVelocity()[1])
 				+ Config.getInstance().getGravitationalConstant();
 		return new Ball(Functions.mathOperator.AdditionOfVectors(getPosition(), getVelocity()), NewVelocity,

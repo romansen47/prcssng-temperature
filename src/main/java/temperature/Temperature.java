@@ -20,7 +20,8 @@ public class Temperature extends Gui {
 		// Setting background to black
 		this.background(0);
 
-		// If restart condition satisfied create new set of balls
+		// If restart condition satisfied create
+		// new set of balls
 		if (Config.getInstance().isRestart()) {
 			Config.getInstance().setRestart(false);
 			final Ball[] BallsTmp = getFunctions().createNewBalls(Config.getInstance().getAmountOfBalls());
@@ -29,16 +30,16 @@ public class Temperature extends Gui {
 				Balls[j] = BallsTmp[j];
 			}
 			final double[] Pos = new double[2];
-			Pos[1] = -100;
-			Pos[0] = Config.getInstance().getRightWall() / 2;
+			Pos[1]	= -100;
+			Pos[0]	= Config.getInstance().getRightWall() / 2;
 			final double[] Vel = new double[2];
-			Vel[0] = 0;
-			Vel[1] = 0;
+			Vel[0]	= 0;
+			Vel[1]	= 0;
 			final int[] Col = new int[3];
-			Col[0] = 255;
-			Col[1] = 0;
-			Col[2] = 0;
-			Balls[Balls.length - 1] = new Ball(Pos, Vel, Config.getInstance().getMaxRad() * 1, Col);
+			Col[0]					= 255;
+			Col[1]					= 0;
+			Col[2]					= 0;
+			Balls[Balls.length - 1]	= new Ball(Pos, Vel, Config.getInstance().getMaxRad() * 1, Col);
 		}
 
 		double MaxMass = 0;
@@ -58,7 +59,8 @@ public class Temperature extends Gui {
 			Balls = getFunctions().collision(Balls, Config.getInstance().getLevelOfCorrectness());
 		}
 
-		// Check, if restart condition is satisfied
+		// Check, if restart condition is
+		// satisfied
 		int VelOfAll = 0;
 		for (int i = 0; i < Balls.length; i++) {
 			VelOfAll += getFunctions().getMathOperator().MagnitudeOfVector(Balls[i].getVelocity());
@@ -70,7 +72,9 @@ public class Temperature extends Gui {
 		// Draw the balls
 		DrawBalls(Balls);
 
-		// Manual restart if 'r' is pressed - exit() if another key or mouse is pressed
+		// Manual restart if 'r' is pressed -
+		// exit() if another key or mouse is
+		// pressed
 		if ((mousePressed && (mouseButton == PConstants.LEFT)) || (keyPressed && key == 'r')) {
 			try {
 				Thread.sleep(400);
@@ -85,7 +89,9 @@ public class Temperature extends Gui {
 		}
 	}
 
-	// These drawing functions use fill() and will be exported to functions.java
+	// These drawing functions use fill()
+	// and will be exported to
+	// functions.java
 	public void draw(Ball A) {
 		this.fill(A.getColor()[0], A.getColor()[1], A.getColor()[2]);
 		ellipse((float) A.getPosition()[0], (float) A.getPosition()[1], 2 * A.getRadius(), 2 * A.getRadius());
