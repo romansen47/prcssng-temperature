@@ -2,7 +2,7 @@ package temperature;
 
 import java.util.Random;
 
-import math.IMathOp;
+import deprecated.math.IMathOp;
 
 public interface IFunctions {
 
