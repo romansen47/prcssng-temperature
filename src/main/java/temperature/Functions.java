@@ -1,7 +1,7 @@
 package temperature;
 
-import deprecated.math.IMathOp;
-import deprecated.math.MathOp;
+import math.IMathOp;
+import math.MathOp;
 
 final public class Functions implements IFunctions {
 
