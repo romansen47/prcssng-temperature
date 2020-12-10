@@ -1,10 +1,10 @@
 package temperature;
 
 import processing.core.PConstants;
-import processing.template.Gui;
+import processing.template.impl.Gui;
 
 public class Temperature extends Gui {
-
+ 
 	private final IFunctions functions = Functions.getInstance();
 
 	public static void main(String[] args) {

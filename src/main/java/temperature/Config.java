@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 public final class Config implements IConfig {
 
 	private int			framerate					= 60;
-	private int			AmountOfBalls				= 400;
+	private int			AmountOfBalls				= 600;
 	private int			LevelOfCorrectness			= 0;												// the higher
 																										// the slower
 	private int			speed						= 1;												// the faster
